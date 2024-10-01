@@ -1,4 +1,4 @@
-<<<<<<< HEAD
+
 """
 CP1404/CP5632 - pratical
 Loops
@@ -21,7 +21,7 @@ print('*' * number_of_stars)
 # d. Print n lines of increasing stars
 for i in range(1, number_of_stars + 1):
     print('*' * i)
-=======
+
 """
 CP1404/CP5632 
 Loops
@@ -44,4 +44,4 @@ print('*' * number_of_stars)
 # d. Print n lines of increasing stars
 for i in range(1, number_of_stars + 1):
     print('*' * i)
->>>>>>> origin/master
+
