@@ -16,5 +16,4 @@ def main():
         print(f"The code for \"{colour_name}\" is {get_colour_code(colour_name)}")
         colour_name = input("Enter another colour name (or press Enter to quit): ").lower()
 
-if __name__ == "__main__":
-    main()
+main()
