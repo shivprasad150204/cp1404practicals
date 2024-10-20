@@ -1,6 +1,6 @@
 """
 CP1404/CP5632 Practical
-Wimbledon data-reading, processing, and displaying
+Wimbledon data-reading, processing and displaying
 """
 FILENAME = "wimbledon.csv"
 INDEX_COUNTRY = 1
@@ -8,30 +8,40 @@ INDEX_CHAMPION = 2
 
 
 def main():
-    """Read data file and print details about Wimbledon champions and countries."""
-    # Load records from file
-    with open(FILENAME, "r", encoding="utf-8-sig") as file:
-        next(file)  # Skip the header line
-        records = [line.strip().split(",") for line in file]
+    """Read data file, process champions and countries, and display the results."""
+    records = read_file_data(FILENAME)
+    champions_dict, country_set = analyze_records(records)
+    show_results(champions_dict, country_set)
 
-    # Analyze records to get champions and countries
-    champion_wins = {}
+
+def analyze_records(data):
+    """Analyze the records to build a dictionary of champions and a set of countries."""
+    champions = {}
     countries = set()
-    for record in records:
-        country = record[INDEX_COUNTRY]
-        champion = record[INDEX_CHAMPION]
-
+    for entry in data:
+        country = entry[INDEX_COUNTRY]
+        champion = entry[INDEX_CHAMPION]
         countries.add(country)
-        champion_wins[champion] = champion_wins.get(champion, 0) + 1
+        champions[champion] = champions.get(champion, 0) + 1
+    return champions, countries
 
-    # Display results
+
+def show_results(champions, countries):
+    """Display the champions and the countries that have won Wimbledon."""
     print("Wimbledon Champions:")
-    for champion, wins in sorted(champion_wins.items()):
+    for champion, wins in champions.items():
         print(f"{champion}: {wins}")
-
     print(f"\nThese {len(countries)} countries have won Wimbledon:")
     print(", ".join(sorted(countries)))
 
 
+def read_file_data(filename):
+    """Read data from the given file and return it as a list of lists."""
+    with open(filename, "r", encoding="utf-8-sig") as file:
+        file.readline()  # Skip header
+        return [line.strip().split(",") for line in file]
+
+
 main()
+
 
