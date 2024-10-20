@@ -31,5 +31,5 @@ def main():
         colour_name = input("Enter another colour name (or press Enter to quit): ").lower()
 
 
-# Run the main function
+
 main()
